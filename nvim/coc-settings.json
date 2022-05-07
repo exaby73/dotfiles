@@ -1,0 +1,9 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+      "dart",
+      "typescript",
+      "svelte",
+      "go"
+    ],
+    "svelte.enable-ts-plugin": true
+}

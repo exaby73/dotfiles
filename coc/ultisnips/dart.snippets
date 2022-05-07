@@ -1,0 +1,144 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet pd "Add Padding" b
+Padding(
+		padding: const EdgeInsets.all(${1:8.0}),
+		child: ${2:Container}($0),
+),
+endsnippet
+
+snippet stless "Stateless widget definition" b
+class ${1:ClassName} extends StatelessWidget {
+	const ${1:ClassName}({Key? key}) : super(key: key);
+
+	@override
+		Widget build(BuildContext context) {
+			return ${2:Container}($0);
+		}
+}
+endsnippet
+
+snippet stful "Stateful widget definition" b
+class ${1:ClassName} extends StatefulWidget {
+	const ${1:ClassName}({Key? key}) : super(key: key);
+
+	@override
+	_${1:ClassName}State createState() => _${1:ClassName}State();
+}
+
+class _${1:ClassName}State extends State<${1:ClassName}> {
+	@override
+	Widget build(BuildContext context) {
+		return ${2:Container}($0);
+	}
+}
+endsnippet
+
+snippet initState "initState definition" b
+@override
+void initState() {
+	super.initState();
+	$0
+}
+endsnippet
+
+snippet importM "flutter_material.dart import" b
+import 'package:flutter/material.dart';
+endsnippet
+
+snippet setState "setState definition" b
+setState(() {
+	$0
+})
+endsnippet
+
+snippet res "reassemble definition" b
+@override
+void reassemble() {
+	super.reassemble();
+	$0
+}
+endsnippet
+
+snippet fpart "Freezed imports" b
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${1:fileName}.freezed.dart';
+part '${1:fileName}.g.dart';
+endsnippet
+
+snippet fdc "Freezed data class" b
+@freezed
+abstract class ${1:ClassName} with _$${1:ClassName} {
+	$0
+}
+endsnippet
+
+snippet fuc "Freezed union case" b
+const factory ${1:ClassName}.${2:MethodName}() = _$0${2:MethodName};
+endsnippet
+
+snippet irepo "Interface for repository" b
+abstract class ${1:RepoName}Repository {
+	$0
+}
+endsnippet
+
+snippet repo "Implementation for interface" b
+class $0${1:RepoName}Repository implements I${1:RepoName}Repository {
+	$0
+}
+endsnippet
+
+snippet rr "required param" i
+@required $0,
+endsnippet
+
+snippet imhttp "import http" b
+import 'package:http/http.dart' as http;
+endsnippet
+
+snippet ec "TextEditingController" b
+TextEditingController _${1}Controller;
+_${1}Controller ??= TextEditingController();
+endsnippet
+
+snippet noc "Navigator.of(context)" i
+Navigator.of(context)$0
+endsnippet
+
+snippet toc "Navigator.of(context)" i
+Theme.of(context)$0
+endsnippet
+
+snippet sbh "SizedBox with height" i
+const SizedBox(height: $0),
+endsnippet
+
+snippet sbw "SizedBox with width" i
+const SizedBox(width: $0),
+endsnippet
+
