@@ -51,6 +51,7 @@ alias fpbf='fvm flutter pub run build_runner build --delete-conflicting-outputs 
 alias fpbe='fvm flutter pub run build_runner build --delete-conflicting-outputs && exit'
 alias fpbw='fvm flutter pub run build_runner watch --delete-conflicting-outputs'
 alias fpbc='fvm flutter pub run build_runner clean'
+alias fpc="fvm flutter clean"
 alias fpg="fvm flutter pub get"
 alias fpu="fvm flutter pub upgrade"
 alias fpun="fvm flutter pub upgrade --null-safety"

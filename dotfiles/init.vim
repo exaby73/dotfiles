@@ -61,11 +61,6 @@ nnoremap <leader>] <C-w>+
 nnoremap + gt
 nnoremap _ gT
 
-" Remaps for changing buffers
-nnoremap < :bp<CR>
-nnoremap > :bn<CR>
-nnoremap <leader>? :bd<CR>
-
 " Remaps for fugitive
 nnoremap <leader>gj :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>
@@ -89,16 +84,47 @@ nnoremap <C-p> :FZF<CR>
 inoremap <silent><expr> <c-space> coc#refresh()
 nnoremap <leader>gp :CocRestart<CR>
 
+" Opt + <
+nnoremap ≤ :BufferMovePrevious<CR>
+" Opt + <
+nnoremap ≥ :BufferMoveNext<CR>
+
+" barbar plugin maps
+nnoremap <silent> <leader>1 :BufferGoto 1<CR>
+nnoremap <silent> <leader>2 :BufferGoto 2<CR>
+nnoremap <silent> <leader>3 :BufferGoto 3<CR>
+nnoremap <silent> <leader>4 :BufferGoto 4<CR>
+nnoremap <silent> <leader>5 :BufferGoto 5<CR>
+nnoremap <silent> <leader>6 :BufferGoto 6<CR>
+nnoremap <silent> <leader>7 :BufferGoto 7<CR>
+nnoremap <silent> <leader>8 :BufferGoto 8<CR>
+nnoremap <silent> <leader>9 :BufferGoto 9<CR>
+nnoremap <silent> <leader>0 :BufferGoto 10<CR>
+nnoremap <silent> <leader>l :BufferLast<CR>
+nnoremap <silent> <leader>, :BufferMovePrevious<CR>
+nnoremap <silent> <leader>. :BufferMoveNext<CR>
+nnoremap <silent> <leader>P :BufferPin<CR>
+nnoremap <silent> < :BufferPrevious<CR>
+nnoremap <silent> > :BufferNext<CR>
+nnoremap <silent> <leader>? :BufferClose<CR>
+
+" nerdtree mappings
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap ø :NERDTreeFind<CR>
+
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'BurntSushi/ripgrep'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'machakann/vim-highlightedyank'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
+Plug 'romgrk/barbar.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
@@ -253,13 +279,11 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" nerdtree mappings
-nnoremap <leader>n :NERDTreeToggle<CR>
-
 let g:coc_global_extensions = [
     \'coc-json', 'coc-yank', 'coc-flutter', 
     \'coc-snippets', 'coc-prettier', 'coc-tsserver', 
-    \'coc-eslint', 'coc-tailwindcss', 'coc-go', 'coc-rls'
+    \'coc-eslint', 'coc-tailwindcss', 'coc-go', 'coc-rls',
+    \'coc-emmet'
 \]
 
 " ----------------------------------------
@@ -284,6 +308,14 @@ syntax enable
 " let g:gruvbox_italic = 1
 
 " colorscheme gruvbox
+
+" ----------------------------------------
+" ---- NERDTree config start ----
+" ----------------------------------------
+
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+let g:NERDTreeWinPos='right'
 
 " ----------------------------------------
 " ---- gruvbox-material config ----
@@ -344,3 +376,20 @@ let g:closetag_shortcut = '>'
 " ----------------------------------------
 " ---- vim-closetag config end ----
 " ----------------------------------------
+
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufRead * call SyncTree()
