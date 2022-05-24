@@ -17,7 +17,7 @@ set nowritebackup
 set number relativenumber
 set scrolloff=6
 set secure
-set shiftwidth=4
+set shiftwidth=0
 set shortmess+=c
 set signcolumn=yes
 set smartcase
@@ -75,6 +75,8 @@ nnoremap <leader>rr :Rg<CR>
 " Flutter
 nnoremap <leader>dd :e output:///flutter-dev<CR>
 nnoremap <leader>dc :CocCommand flutter.dev.clearDevLog <CR>
+nnoremap <leader>ds :CocCommand flutter.devices <CR>
+nnoremap <leader>dr :CocCommand flutter.run <CR>
 
 " Remap for terminal normal mode
 tnoremap <C-q> <C-\><C-n>
@@ -115,7 +117,6 @@ nnoremap ø :NERDTreeFind<CR>
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'BurntSushi/ripgrep'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
