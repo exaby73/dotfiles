@@ -114,33 +114,45 @@ nnoremap <silent> <leader>? :BufferClose<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap ø :NERDTreeFind<CR>
 
+" Lorem generator
+nnoremap <leader>l <Plug>Lorem
+
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'BurntSushi/ripgrep'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'machakann/vim-highlightedyank'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree'
-Plug 'romgrk/barbar.nvim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-surround'
-Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'AndrewRadev/tagalong.vim' " Auto rename XML/HTML style tags
+Plug 'BurntSushi/ripgrep' " Search code in files
+Plug 'airblade/vim-gitgutter' " Git Sidebar
+Plug 'ap/vim-css-color' " Css color highlight
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Preview markdown files in the browser
+Plug 'jiangmiao/auto-pairs' " Auto brackets and XML/HTML tag pairs
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } } " Fuzzy search (engine?)
+Plug 'junegunn/fzf.vim' " Fuzzy search
+Plug 'kyazdani42/nvim-web-devicons' " Icons in the buffer bar
+Plug 'machakann/vim-highlightedyank' " Highlight yanked text
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP, autocomplete, bloat... Will replace at some point ¯\(◉◡◔)/¯
+Plug 'preservim/nerdtree' " File explorer (mainly side bar)
+Plug 'romgrk/barbar.nvim' " Better buffer bars
+Plug 'tpope/vim-commentary' " Comment code
+Plug 'tpope/vim-fugitive' " Git
+Plug 'tpope/vim-speeddating' " Increment/decrement dates like numbers with <C-a> and <C-x>
+Plug 'tpope/vim-surround' " Surround text with quotes, brackets, etc.
+Plug 'vim-scripts/ReplaceWithRegister' " Replace text without overwriting default register
+Plug 'mbpowers/lorem-nvim' " Lorem generator
 
 " Themes
+Plug 'romgrk/doom-one.vim'
 Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/sonokai'
+Plug 'tomasiser/vim-code-dark'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Languages and Frameworks
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'evanleck/vim-svelte'
+Plug 'tpope/vim-markdown'
+
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 " coc prettier configs
@@ -163,9 +175,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -279,12 +288,15 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
 let g:coc_global_extensions = [
     \'coc-json', 'coc-yank', 'coc-flutter', 
     \'coc-snippets', 'coc-prettier', 'coc-tsserver', 
     \'coc-eslint', 'coc-tailwindcss', 'coc-go', 'coc-rls',
-    \'coc-emmet'
+    \'coc-emmet', 'coc-css', 'coc-rls'
 \]
 
 " ----------------------------------------
@@ -296,19 +308,6 @@ if (has("termguicolors"))
 endif
 
 syntax enable
-
-" Color config for OceanicNext
-" colorscheme OceanicNext
-
-" let ayucolor="dark"
-" colorscheme ayu
-
-" ----------gruvbox config----------
-" let g:gruvbox_contrast_dark = "dark"
-" let g:gruvbox_invert_selection = 0
-" let g:gruvbox_italic = 1
-
-" colorscheme gruvbox
 
 " ----------------------------------------
 " ---- NERDTree config start ----
@@ -322,22 +321,44 @@ let g:NERDTreeWinPos='right'
 " ---- gruvbox-material config ----
 " ----------------------------------------
 
-set background=dark
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_diagnostic_line_highlight = 1
-let g:gruvbox_material_palette = 'mix'
+" set background=dark
+" let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_enable_italic = 1
+" let g:gruvbox_material_enable_bold = 1
+" let g:gruvbox_material_enable_italic = 1
+" let g:gruvbox_material_diagnostic_line_highlight = 1
+" let g:gruvbox_material_palette = 'mix'
 
-colorscheme gruvbox-material
+" colorscheme gruvbox-material
+
+" ----------------------------------------
+" ---- doom-one config ----
+" ----------------------------------------
+
+colorscheme doom-one
+let g:doom_one_terminal_colors = v:true
+
+" ----------------------------------------
+" ---- sonokai config ----
+" ----------------------------------------
+
+let g:sonokai_style = 'atlantis'
+let g:sonokai_better_performance = 1
+
+colorscheme sonokai
+" ----------------------------------------
+" ---- vim-code-dark config ----
+" ----------------------------------------
+
+colorscheme codedark
 
 " ----------------------------------------
 " ---- air-line config ----
 " ----------------------------------------
 
-let g:airline_theme='gruvbox_material'
-let g:airline_powerline_fonts = 0
+" let g:airline_theme='gruvbox_material'
+let g:airline_theme='codedark'
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " ----------------------------------------
@@ -394,3 +415,29 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 autocmd BufRead * call SyncTree()
+
+if exists('g:started_by_firenvim')
+    set guifont=Jetbrains_Mono:h22
+endif
+
+" Tagalong
+let g:tagalong_filetypes = ['eco', 'eelixir', 'ejs', 'eruby', 'html', 'htmldjango',
+    \ 'javascriptreact', 'jsx', 'php', 'typescriptreact', 'xml', 'svelte']
+
+
+
+" Firenvim
+let g:firenvim_config = { 
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'neovim',
+            \ 'content': 'text',
+            \ 'priority': 0,
+            \ 'selector': 'textarea',
+            \ 'takeover': 'never',
+        \ },
+    \ }
+\ }

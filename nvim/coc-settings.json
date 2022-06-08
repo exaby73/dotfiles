@@ -1,10 +1,11 @@
 {
     "coc.preferences.formatOnSaveFiletypes": [
       "dart",
-      "typescript",
-      "typescriptreact",
+      "go",
+      "rust",
       "svelte",
-      "go"
+      "typescript",
+      "typescriptreact"
     ],
     "svelte.enable-ts-plugin": true,
     "prettier.useTabs": false,

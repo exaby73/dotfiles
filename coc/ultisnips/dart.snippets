@@ -92,7 +92,7 @@ endsnippet
 
 snippet fdc "Freezed data class" b
 @freezed
-abstract class ${1:ClassName} with _$${1:ClassName} {
+class ${1:ClassName} with _$${1:ClassName} {
 	$0
 }
 endsnippet
@@ -114,16 +114,11 @@ class $0${1:RepoName}Repository implements I${1:RepoName}Repository {
 endsnippet
 
 snippet rr "required param" i
-@required $0,
+required $0,
 endsnippet
 
 snippet imhttp "import http" b
 import 'package:http/http.dart' as http;
-endsnippet
-
-snippet ec "TextEditingController" b
-TextEditingController _${1}Controller;
-_${1}Controller ??= TextEditingController();
 endsnippet
 
 snippet noc "Navigator.of(context)" i
