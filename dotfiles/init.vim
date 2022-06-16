@@ -150,6 +150,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Languages and Frameworks
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'evanleck/vim-svelte'
+Plug 'pantharshit00/vim-prisma' " Syntax highlight for prisma files
 Plug 'tpope/vim-markdown'
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -296,7 +297,7 @@ let g:coc_global_extensions = [
     \'coc-json', 'coc-yank', 'coc-flutter', 
     \'coc-snippets', 'coc-prettier', 'coc-tsserver', 
     \'coc-eslint', 'coc-tailwindcss', 'coc-go', 'coc-rls',
-    \'coc-emmet', 'coc-css', 'coc-rls'
+    \'coc-emmet', 'coc-css', 'coc-rls', 'coc-prisma'
 \]
 
 " ----------------------------------------

@@ -1,0 +1,21 @@
+let mapleader = " "
+
+" General settings
+set scrolloff=6
+set ignorecase
+set smartcase
+set incsearch
+set number relativenumber
+
+" Maps
+vnoremap > >gv
+vnoremap < <gv
+vnoremap gs :sort<CR>
+nnoremap <leader>n :NERDTree<CR>
+
+" Plugins
+set surround
+set commentary
+set ReplaceWithRegister
+set highlightedyank
+set NERDTree

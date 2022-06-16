@@ -2,6 +2,7 @@
     "coc.preferences.formatOnSaveFiletypes": [
       "dart",
       "go",
+      "prisma",
       "rust",
       "svelte",
       "typescript",
