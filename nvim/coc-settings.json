@@ -5,10 +5,10 @@
       "prisma",
       "rust",
       "svelte",
-      "typescript",
-      "typescriptreact"
+      "typescript"
     ],
     "svelte.enable-ts-plugin": true,
     "prettier.useTabs": false,
+    "prettier.formatterPriority": 1,
     "prettier.tabWidth": 4
 }
