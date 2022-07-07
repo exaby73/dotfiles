@@ -106,10 +106,12 @@ alias v21="scrcpy -s 3085425058000NM & disown %scrcpy && exit"
 # Environment Variables
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk/"
 export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+export DENO_INSTALL="/Users/nabeelparkar/.deno"
 export EDITOR=$VISUAL
 export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
 export JAVA_HOME="/opt/homebrew/opt/openjdk@11"
 export LANG=en_US.UTF-8
+export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="$PATH:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$HOME/bin:$HOME/.config/composer/vendor/bin:/snap/bin:$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
