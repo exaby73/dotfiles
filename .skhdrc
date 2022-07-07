@@ -1,4 +1,6 @@
 fn - f : yabai -m window --toggle float
+fn + shift - s : yabai -m space --layout stack
+fn + shift - t : yabai -m space --layout bsp
 
 lalt + shift - 1 : yabai -m window --space 1
 lalt + shift - 2 : yabai -m window --space 2
