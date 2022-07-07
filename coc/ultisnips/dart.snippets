@@ -25,14 +25,14 @@
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 snippet pd "Add Padding" b
 Padding(
-		padding: const EdgeInsets.all(${1:8.0}),
-		child: ${2:Container}($0),
+	padding: const EdgeInsets.all(${1:8.0}),
+	child: ${2:Container}($0),
 ),
 endsnippet
 
 snippet stless "Stateless widget definition" b
 class ${1:ClassName} extends StatelessWidget {
-	const ${1:ClassName}({Key? key}) : super(key: key);
+	const ${1:ClassName}({super.key});
 
 	@override
 		Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ endsnippet
 
 snippet stful "Stateful widget definition" b
 class ${1:ClassName} extends StatefulWidget {
-	const ${1:ClassName}({Key? key}) : super(key: key);
+	const ${1:ClassName}({super.key});
 
 	@override
 	_${1:ClassName}State createState() => _${1:ClassName}State();
@@ -97,8 +97,16 @@ class ${1:ClassName} with _$${1:ClassName} {
 }
 endsnippet
 
-snippet fuc "Freezed union case" b
+snippet fcon "Freezed union case" b
+const factory ${1:ClassName}() = _${1:ClassName};$0
+endsnippet
+
+snippet fuc "Freezed constructor" b
 const factory ${1:ClassName}.${2:MethodName}() = _$0${2:MethodName};
+endsnippet
+
+snippet fjson "Freezed fromJson" b
+factory ${1:ClassName}.fromJson(Map<String, dynamic> json) => _$${1:ClassName}FromJson(json);
 endsnippet
 
 snippet irepo "Interface for repository" b
