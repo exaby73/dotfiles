@@ -138,6 +138,7 @@ Plug 'tpope/vim-speeddating' " Increment/decrement dates like numbers with <C-a>
 Plug 'tpope/vim-surround' " Surround text with quotes, brackets, etc.
 Plug 'vim-scripts/ReplaceWithRegister' " Replace text without overwriting default register
 Plug 'mbpowers/lorem-nvim' " Lorem generator
+Plug 'github/copilot.vim' " Github copilot
 
 " Themes
 Plug 'romgrk/doom-one.vim'
@@ -217,7 +218,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting file
-nmap ł :Format<CR>
+nmap … :Format<CR> " Option+;
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
